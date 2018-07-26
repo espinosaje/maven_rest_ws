@@ -1,0 +1,85 @@
+====== build =======
+cd C:\DEV\projects\maven_rest_ws
+
+mvn clean package
+
+java -jar target/maven_rest_ws-0.1.0.jar
+
+====== calls =======
+
+http://127.0.0.1:8080/event/get?name=ozzfest
+
+--En Tomcat:
+http://localhost:8081/maven_rest_ws-0.1.0/event/all
+http://localhost:8081/maven_rest_ws-0.1.0/event/get?name=ozzfest
+http://localhost:8081/maven_rest_ws-0.1.0/event/add?name=Tricky&venue=3&tour=Lateralus&year=2001&fest=0
+http://localhost:8081/maven_rest_ws-0.1.0/event/concert?searchTerm=1
+
+localhost:8081/maven_rest_ws-0.1.0/event/concert?searchTerm=1
+
+===== DB =======
+--- MySQL
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/concerts
+spring.datasource.username=admin
+spring.datasource.password=myLocal@db81
+
+--- MS SQL Sewrver
+
+To Initiate the service, we need to access "SQL Server Configuration Manager":
+https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/determine-whether-the-database-engine-is-installed-and-started?view=sql-server-2017
+
+
+====== JBoss ======
+admin - jFu@kingBoss1
+console: 
+http://localhost:9990/console/App.html#domain-deployments
+
+
+poner aqui el WAR
+C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps
+
+-- starting the server form the CMD, to be able to see the logs
+
+cd C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin
+catalina run
+
+===== JQuery =====
+https://spring.io/guides/gs/consuming-rest-jquery/
+
+
+===== Setlist.fm =====
+User: espinosaje
+App NAme: gigdata
+App Key: 2f7b7e46-b66a-4281-8ac4-821cf1a03efb
+
+Sample: https://api.setlist.fm/rest/1.0/search/setlists?artistName=Primus&year=2017&stateCode=CO
+*We need to call it through Postman to set the HEADER
+
+Doc:
+https://api.setlist.fm/docs/1.0/ui/index.html#/
+
+========== Analysis ==============
+- To populate the venues we'll need to check 
+
+=============== Conceptos ====================
+--- Spring
+SPring MVC: The Framework itself
+Spring Boot: Makes it easier to configure/run a Spring App. For example, it has the included Tomcat
+
+--- Hibernate:
+- FetchType: LAZY pulls what's needed, EAGER pulls everything
+
+--- DB
+Collation: How characters are compared
+
+
+========== Referencias ============
+JPA Basics:
+https://spring.io/blog/2011/02/10/getting-started-with-spring-data-jpa/
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.at-query
+
+Spring with JQuery
+https://spring.io/guides/gs/consuming-rest-jquery/
+
+Consuming WS:
+https://spring.io/guides/gs/consuming-rest/

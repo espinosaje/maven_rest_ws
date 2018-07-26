@@ -20,6 +20,6 @@ public interface EventRepository extends JpaRepository<Event, Long>, EventReposi
 
 	//SELECT l.artist, v.name, e.year FROM event e, venue v, lineup l WHERE e.id=l.event and e.venue=v.id and e.id =
 	@Query("select e from Event e where e.id = ?1")
-    Iterable<Event> findBySearchTerm(String searchTerm);
+    Iterable<Event> findBySearchTerm(Integer searchTerm);
 
 }

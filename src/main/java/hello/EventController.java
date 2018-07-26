@@ -61,15 +61,15 @@ public class EventController {
 		
 		return eventRepository.findByName(name);
 	}
-/*	
+	
 	//not working, might need to implement Entities for the other tables
 	@GetMapping(path="/concert") // Map ONLY GET Requests
-	public @ResponseBody Iterable<Event> findBySearchTerm (@RequestParam String searchTerm) {
+	public @ResponseBody Iterable<Event> findBySearchTerm (@RequestParam Integer searchTerm) {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
 
 		
 		return eventRepository.findBySearchTerm(searchTerm);
 	}
-*/
+
 }
