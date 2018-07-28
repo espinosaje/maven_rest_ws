@@ -14,7 +14,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import java.util.Arrays;
+import java.util.ArrayList;
 
+import hello.setlist.VenuesJson;
 import hello.setlist.Venue;
 
 
@@ -44,11 +46,18 @@ public class VenueController {
 	
 		//actual service call
         //Venue venue = restTemplate.getForObject(request, Venue.class);
-		ResponseEntity<Venue> venue = (ResponseEntity<Venue>) restTemplate.exchange(request, HttpMethod.GET, entityReq, Venue.class);
-
-		System.out.println("venue.getStatusCode: "+venue.getStatusCode());
-		String result = (venue.getBody()).toString();
+		ResponseEntity<VenuesJson> venuesJsonEntity = (ResponseEntity<VenuesJson>) restTemplate.exchange(request, HttpMethod.GET, entityReq, VenuesJson.class);
 		
-		return result;
+System.out.println("venuesJsonEntity.getStatusCode: "+venuesJsonEntity.getStatusCode());
+
+		//get the main JSON object from the entity
+		VenuesJson venuesJSon = (VenuesJson) venuesJsonEntity.getBody();
+		//extrace the venue from the main venue object
+		Venue venueResult = ((ArrayList<Venue>) venuesJSon.getVenue()).get(0);	
+		
+System.out.println("venueResult.toString(): "+venueResult.getName());
+	
+		
+		return venuesJSon.toString();
 	}
 }

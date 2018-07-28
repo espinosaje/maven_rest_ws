@@ -7,10 +7,12 @@ public class Venue {
 
     private String id;
     private String name;
-
+	
+	
     public Venue() {
     }
-
+	
+	
     public String getId() {
         return id;
     }
@@ -29,7 +31,7 @@ public class Venue {
 
     @Override
     public String toString() {
-        return "Venue{" +
+        return "= Venue{" +
                 "id='" + id + '\'' +
                 ", name=" + name +
                 '}';
