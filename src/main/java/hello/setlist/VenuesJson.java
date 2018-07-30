@@ -45,7 +45,7 @@ public class VenuesJson {
 		String result = "";
 		System.out.println("venue.size(): "+venue.size());
 		for (int i=0; i < venue.size(); i++){
-			result = "\n"+ ((ArrayList<Venue>) this.getVenue()).get(i).toString();
+			result += "\n"+ ((ArrayList<Venue>) this.getVenue()).get(i).toString();
 		}
         return result;
     }

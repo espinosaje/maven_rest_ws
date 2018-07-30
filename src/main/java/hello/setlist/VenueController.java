@@ -25,39 +25,46 @@ import hello.setlist.Venue;
 public class VenueController {
 	//@Autowired
 	//private Venue venue;
+	HttpEntity<String> entityReq;
 	
-	@GetMapping(path="/venue")
-	public @ResponseBody String getVenue (@RequestParam String cityName
-			, @RequestParam String stateCode			
-			) {
-		String request = "https://api.setlist.fm/rest/1.0/search/venues"+"?cityName="+cityName+"&stateCode="+stateCode;		
-		RestTemplate restTemplate = new RestTemplate();
-
-		System.out.println("request: "+request);
-		
-		
+	public VenueController(){
 		// set the headers for authentication
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.set("x-api-key", "2f7b7e46-b66a-4281-8ac4-821cf1a03efb");
-		HttpEntity<String> entityReq = new HttpEntity<String>(headers);
+		entityReq = new HttpEntity<String>(headers);
 		
+	}
 	
-		//actual service call
-        //Venue venue = restTemplate.getForObject(request, Venue.class);
-		ResponseEntity<VenuesJson> venuesJsonEntity = (ResponseEntity<VenuesJson>) restTemplate.exchange(request, HttpMethod.GET, entityReq, VenuesJson.class);
+	@GetMapping(path="/venue")
+	public @ResponseBody String getVenue (@RequestParam(required=false) String name
+			, @RequestParam(required=false) String stateCode
+			, @RequestParam(required=false) String cityName			
+			) {
+		String request = "";;
+		System.out.println("name: "+name);
+		System.out.println("stateCode: "+stateCode);System.out.println("cityName: "+cityName);
+		if (name != null && !name.equals("")){
+			request = "https://api.setlist.fm/rest/1.0/search/venues"+"?name="+name;
+		}
+		else if (stateCode != null && cityName != null){
+			request = "https://api.setlist.fm/rest/1.0/search/venues"+"?cityName="+cityName+"&stateCode="+stateCode;
+		}
 		
-System.out.println("venuesJsonEntity.getStatusCode: "+venuesJsonEntity.getStatusCode());
+		System.out.println("request: "+request);		
+		
+		RestTemplate restTemplate = new RestTemplate();
+
+		//actual service call
+		ResponseEntity<VenuesJson> venuesJsonEntity = (ResponseEntity<VenuesJson>) restTemplate.exchange(request, HttpMethod.GET, entityReq, VenuesJson.class);	
+		System.out.println("venuesJsonEntity.getStatusCode: "+venuesJsonEntity.getStatusCode());
 
 		//get the main JSON object from the entity
 		VenuesJson venuesJSon = (VenuesJson) venuesJsonEntity.getBody();
 		//extrace the venue from the main venue object
-		Venue venueResult = ((ArrayList<Venue>) venuesJSon.getVenue()).get(0);	
-		
-System.out.println("venueResult.toString(): "+venueResult.getName());
-	
-		
+		//Venue venueResult = ((ArrayList<Venue>) venuesJSon.getVenue()).get(0);	
+
 		return venuesJSon.toString();
 	}
 }
