@@ -52,4 +52,10 @@ public class VenuesJson {
 		
         return result;
     }
+	
+	public Iterable<Venue> response() {
+		Iterable<Venue> result = venue;
+		
+        return result;
+    }
 }

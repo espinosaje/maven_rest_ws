@@ -38,13 +38,13 @@ public class VenueController {
 	}
 	
 	@GetMapping(path="/venue")
-	public @ResponseBody String getVenue (@RequestParam(required=false) String name
+	public @ResponseBody Iterable<Venue> getVenue (@RequestParam(required=false) String name
 			, @RequestParam(required=false) String stateCode
 			, @RequestParam(required=false) String cityName			
 			) {
+				
 		String request = "";;
-		System.out.println("name: "+name);
-		System.out.println("stateCode: "+stateCode);System.out.println("cityName: "+cityName);
+
 		if (name != null && !name.equals("")){
 			request = "https://api.setlist.fm/rest/1.0/search/venues"+"?name="+name;
 		}
@@ -62,9 +62,7 @@ public class VenueController {
 
 		//get the main JSON object from the entity
 		VenuesJson venuesJSon = (VenuesJson) venuesJsonEntity.getBody();
-		//extrace the venue from the main venue object
-		//Venue venueResult = ((ArrayList<Venue>) venuesJSon.getVenue()).get(0);	
 
-		return venuesJSon.toString();
+		return venuesJSon.response();
 	}
 }
