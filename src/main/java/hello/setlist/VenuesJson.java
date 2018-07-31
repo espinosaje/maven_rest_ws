@@ -42,11 +42,14 @@ public class VenuesJson {
 */
     @Override
     public String toString() {
-		String result = "";
+		String result = "[";	//ToDo: change to StringBuffer or Builder
 		System.out.println("venue.size(): "+venue.size());
 		for (int i=0; i < venue.size(); i++){
-			result += "\n"+ ((ArrayList<Venue>) this.getVenue()).get(i).toString();
+			result += ((ArrayList<Venue>) this.getVenue()).get(i).toString()+",";
 		}
+		result = result.substring(0, result.lastIndexOf(",")) + "]";
+		//result = "]";
+		
         return result;
     }
 }

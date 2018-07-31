@@ -31,9 +31,9 @@ public class Venue {
 
     @Override
     public String toString() {
-        return "= Venue{" +
-                "id='" + id + '\'' +
-                ", name=" + name +
+        return "{" +
+                "\"id\":\"" + id + "\"," +
+                "\"name\":\"" + name + "\"" +
                 '}';
     }
 }
