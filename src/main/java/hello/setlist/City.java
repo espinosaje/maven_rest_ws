@@ -1,26 +1,24 @@
 package hello.setlist;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import hello.setlist.City;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Venue {
+public class City {
 
-    private String id;
     private String name;
-	private City city;
+	private String state;
+	private String stateCode;
 	
-	
-    public Venue() {
+    public City() {
     }
 	
 	
-    public String getId() {
-        return id;
+    public String getState() {
+        return state;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getName() {
@@ -31,18 +29,18 @@ public class Venue {
         this.name = name;
     }
 	
-	public City getCity() {
-        return city;
+	public String getStateCode() {
+        return stateCode;
     }
 
-    public void setCity(City city) {
-        this.city = city;
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
     }
 
     @Override
     public String toString() {
         return "{" +
-                "\"id\":\"" + id + "\"," +
+                "\"stateCode\":\"" + stateCode + "\"," +
                 "\"name\":\"" + name + "\"" +
                 '}';
     }
