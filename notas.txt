@@ -46,6 +46,9 @@ catalina run
 ===== JQuery =====
 https://spring.io/guides/gs/consuming-rest-jquery/
 
+El codigo del front-end esta aqui:
+C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\concert_page
+
 
 ===== Setlist.fm =====
 User: espinosaje

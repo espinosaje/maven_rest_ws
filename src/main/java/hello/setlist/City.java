@@ -1,6 +1,7 @@
 package hello.setlist;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import hello.setlist.Country;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class City {
@@ -8,6 +9,7 @@ public class City {
     private String name;
 	private String state;
 	private String stateCode;
+	private Country country;
 	
     public City() {
     }
@@ -35,6 +37,14 @@ public class City {
 
     public void setStateCode(String stateCode) {
         this.stateCode = stateCode;
+    }
+
+	public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     @Override

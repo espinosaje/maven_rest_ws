@@ -16,18 +16,18 @@ import org.springframework.http.ResponseEntity;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-import hello.setlist.VenuesJson;
-import hello.setlist.Venue;
+import hello.setlist.ArtistsJson;
+import hello.setlist.Artist;
 
 
 @RestController
 @RequestMapping("/setlist")
-public class VenueController {
+public class ArtistController {
 	//@Autowired
 	//private Venue venue;
 	HttpEntity<String> entityReq;
 	
-	public VenueController(){
+	public ArtistController(){
 		// set the headers for authentication
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -36,39 +36,28 @@ public class VenueController {
 		entityReq = new HttpEntity<String>(headers);		
 	}
 	
-	@GetMapping(path="/venue")
-	public @ResponseBody Iterable<Venue> getVenue (@RequestParam(required=false) String name
-			, @RequestParam(required=false) String stateCode
-			, @RequestParam(required=false) String cityName			
-			) {
+	@GetMapping(path="/artist")
+	public @ResponseBody Iterable<Artist> getArtist (@RequestParam(required=true) String artistName) {
 				
-		String request = "https://api.setlist.fm/rest/1.0/search/venues?";
+		String request = "https://api.setlist.fm/rest/1.0/search/artists?";
 
-		if (name != null && !name.equals("")){
-			request += "name="+name+"&";
-		}
-		
-		if (stateCode != null && !stateCode.equals("")){
-			request += "stateCode="+stateCode+"&";
-		}
-		
-		if (cityName != null && !cityName.equals("")){
-			request += "cityName="+cityName+"&";
-		}
+		if (artistName != null && !artistName.equals("")){
+			request += "artistName="+artistName+"&";
+		}		
 				
 		System.out.println("request: "+request);		
 		
 		RestTemplate restTemplate = new RestTemplate();
 
 		//actual service call
-		ResponseEntity<VenuesJson> venuesJsonEntity = (ResponseEntity<VenuesJson>) restTemplate.exchange(request, HttpMethod.GET, entityReq, VenuesJson.class);	
-		System.out.println("venuesJsonEntity.getStatusCode: "+venuesJsonEntity.getStatusCode());
+		ResponseEntity<ArtistsJson> artistsJsonEntity = (ResponseEntity<ArtistsJson>) restTemplate.exchange(request, HttpMethod.GET, entityReq, ArtistsJson.class);	
+		System.out.println("artistsJsonEntity.getStatusCode: "+artistsJsonEntity.getStatusCode());
 
 		//get the main JSON object from the entity
-		VenuesJson venuesJSon = (VenuesJson) venuesJsonEntity.getBody();
+		ArtistsJson artistsJson = (ArtistsJson) artistsJsonEntity.getBody();
 		
-		System.out.println("venuesJSon: "+venuesJSon);
+		System.out.println("artistsJson: "+artistsJson);
 
-		return venuesJSon.response();
+		return artistsJson.response();
 	}
 }
