@@ -29,7 +29,7 @@ To Initiate the service, we need to access "SQL Server Configuration Manager":
 https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/determine-whether-the-database-engine-is-installed-and-started?view=sql-server-2017
 
 
-====== JBoss ======
+====== Server ======
 admin - jFu@kingBoss1
 console: 
 http://localhost:9990/console/App.html#domain-deployments
