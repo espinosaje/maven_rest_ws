@@ -17,6 +17,10 @@ http://localhost:8081/maven_rest_ws-0.1.0/event/concert?searchTerm=1
 
 localhost:8081/maven_rest_ws-0.1.0/event/concert?searchTerm=1
 
+--Trying to add Event and an Artist at the same time:
+http://localhost:8081/maven_rest_ws-0.1.0/event_lineup/add_event_headliner?name=nine inch nails&venue=99&tour=Fragility&year=2005&fest=0&artist=nine inch nails&is_headliner=1&mbid=b7ffd2af-418f-4be2-bdd1-22f8b48613da&setlist_id=7bd6f6b4
+
+
 ===== DB =======
 --- MySQL
 spring.datasource.url=jdbc:mysql://127.0.0.1:3306/concerts

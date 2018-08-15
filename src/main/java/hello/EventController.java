@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
 
 import hello.Event;
 import hello.EventRepository;
@@ -29,19 +31,21 @@ public class EventController {
 	@GetMapping(path="/add") // Map ONLY GET Requests
 	public @ResponseBody String addNewEvent (@RequestParam String name
 			, @RequestParam Integer venue
-			, @RequestParam String tour
-			, @RequestParam Integer year
-			, @RequestParam boolean fest
+			, @RequestParam(required=false) String tour
+			, @RequestParam(required=false) Integer year
+			, @RequestParam(required=false) boolean fest
+			, @RequestParam  @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date
 			) {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
-
+System.out.print("---input date: "+date);
 		Event n = new Event();
 		n.setName(name);
 		n.setVenue(venue);
 		n.setTour(tour);
 		n.setYear(year);
 		n.setFest(fest);
+		n.setDate(date);
 		eventRepository.save(n);
 		return "Event Saved";
 	}

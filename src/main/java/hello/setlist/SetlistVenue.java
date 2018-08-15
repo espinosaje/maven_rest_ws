@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import hello.setlist.City;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Venue {
+public class SetlistVenue {
 
     private String id;
     private String name;
 	private City city;
 	
 	
-    public Venue() {
+    public SetlistVenue() {
     }
 	
 	

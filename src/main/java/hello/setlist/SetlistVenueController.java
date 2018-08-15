@@ -17,17 +17,17 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 import hello.setlist.VenuesJson;
-import hello.setlist.Venue;
+import hello.setlist.SetlistVenue;
 
 
 @RestController
 @RequestMapping("/setlist")
-public class VenueController {
+public class SetlistVenueController {
 	//@Autowired
-	//private Venue venue;
+	//private SetlistVenue venue;
 	HttpEntity<String> entityReq;
 	
-	public VenueController(){
+	public SetlistVenueController(){
 		// set the headers for authentication
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -37,7 +37,7 @@ public class VenueController {
 	}
 	
 	@GetMapping(path="/venue")
-	public @ResponseBody Iterable<Venue> getVenue (@RequestParam(required=false) String name
+	public @ResponseBody Iterable<SetlistVenue> getVenue (@RequestParam(required=false) String name
 			, @RequestParam(required=false) String stateCode
 			, @RequestParam(required=false) String cityName			
 			) {

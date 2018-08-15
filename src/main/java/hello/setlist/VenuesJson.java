@@ -1,6 +1,6 @@
 package hello.setlist;
 
-import hello.setlist.Venue;
+import hello.setlist.SetlistVenue;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VenuesJson {
 
-    private ArrayList<Venue> venue;
+    private ArrayList<SetlistVenue> venue;
 	
 	private String type;
 	
@@ -24,11 +24,11 @@ public class VenuesJson {
         this.type = type;
     }
 
-    public ArrayList<Venue> getVenue() {
+    public ArrayList<SetlistVenue> getVenue() {
         return venue;
     }
 
-    public void setVenue(ArrayList<Venue> venue) {
+    public void setVenue(ArrayList<SetlistVenue> venue) {
         this.venue = venue;
     }
 /*
@@ -45,7 +45,7 @@ public class VenuesJson {
 		String result = "[";	//ToDo: change to StringBuffer or Builder
 		System.out.println("venue.size(): "+venue.size());
 		for (int i=0; i < venue.size(); i++){
-			result += ((ArrayList<Venue>) this.getVenue()).get(i).toString()+",";
+			result += ((ArrayList<SetlistVenue>) this.getVenue()).get(i).toString()+",";
 		}
 		result = result.substring(0, result.lastIndexOf(",")) + "]";
 		//result = "]";
@@ -53,8 +53,8 @@ public class VenuesJson {
         return result;
     }
 	
-	public Iterable<Venue> response() {
-		Iterable<Venue> result = venue;
+	public Iterable<SetlistVenue> response() {
+		Iterable<SetlistVenue> result = venue;
 		
         return result;
     }

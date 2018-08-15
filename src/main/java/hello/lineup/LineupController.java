@@ -20,10 +20,10 @@ public class LineupController {
 
 	@GetMapping(path="/add") // Map ONLY GET Requests
 	public @ResponseBody String addNewLineup (@RequestParam Integer event
-			, @RequestParam String artist
-			, @RequestParam boolean is_headliner
-			, @RequestParam String mbid
-			, @RequestParam String setlist_id
+			, @RequestParam(required=false) String artist
+			, @RequestParam(required=false) boolean is_headliner
+			, @RequestParam(required=false) String mbid
+			, @RequestParam(required=false) String setlist_id
 			
 			) {
 		// @ResponseBody means the returned String is the response, not a view name

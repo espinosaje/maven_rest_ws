@@ -36,10 +36,13 @@ public class ArtistController {
 		entityReq = new HttpEntity<String>(headers);		
 	}
 	
+	// Returns an exact match of the artists name
+	// To return a List, we need to change the return type to Iterable<Artist> and return the "artistsJson" object instead of "result"
 	@GetMapping(path="/artist")
-	public @ResponseBody Iterable<Artist> getArtist (@RequestParam(required=true) String artistName) {
+	public @ResponseBody Artist getArtist (@RequestParam(required=true) String artistName) {
 				
 		String request = "https://api.setlist.fm/rest/1.0/search/artists?";
+		Artist result;
 
 		if (artistName != null && !artistName.equals("")){
 			request += "artistName="+artistName+"&";
@@ -56,8 +59,20 @@ public class ArtistController {
 		//get the main JSON object from the entity
 		ArtistsJson artistsJson = (ArtistsJson) artistsJsonEntity.getBody();
 		
+		// look for only the artist with the exact name
+		result = findExactMatch(artistsJson.getArtist(), artistName);
+
 		System.out.println("artistsJson: "+artistsJson);
 
-		return artistsJson.response();
+		return result; //artistsJson.response();
+	}
+	
+	public Artist findExactMatch(ArrayList<Artist> artistList, String name){
+		for (Artist artist: artistList){
+			if (name.equalsIgnoreCase(artist.getName())){
+					return artist;
+			}
+		}
+		return null;
 	}
 }

@@ -4,23 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Event {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-
     private String name;
-
-    private String tour;
-	
+    private String tour;	
 	private Integer year;
-	
-	private Integer venue;
-	
+	private Integer venue;	
 	private boolean fest;
-
+	private LocalDate date;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -69,4 +66,12 @@ public class Event {
 		this.fest = fest;
 	}
 
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+	
 }

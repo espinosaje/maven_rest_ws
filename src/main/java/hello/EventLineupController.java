@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
 
 import hello.Event;
 import hello.EventRepository;
@@ -31,6 +33,8 @@ public class EventLineupController {
 			, @RequestParam(required=false) String tour
 			, @RequestParam(required=false) Integer year
 			, @RequestParam(required=false) boolean fest
+			, @RequestParam(required=false) 
+			@DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date
 			, @RequestParam(required=false) String artist
 			, @RequestParam(required=false) boolean is_headliner
 			, @RequestParam(required=false) String mbid
@@ -44,6 +48,7 @@ public class EventLineupController {
 		n.setTour(tour);
 		n.setYear(year);
 		n.setFest(fest);
+		n.setDate(date);
 		eventRepository.saveAndFlush(n);	//changed "save" to "saveAndFlush" so we can get the ID
 		System.out.print("Event ID: "+n.getId());
 		// Create the Lineup for the event

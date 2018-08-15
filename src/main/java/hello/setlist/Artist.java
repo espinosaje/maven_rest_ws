@@ -8,6 +8,7 @@ public class Artist {
     private String mbid;
     private String name;
     private String disambiguation;
+	
     public Artist() {
     }
 	
