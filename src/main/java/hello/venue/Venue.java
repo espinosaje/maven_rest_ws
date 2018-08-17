@@ -15,7 +15,7 @@ public class Venue {
     private String country;
     private String city;	
 	private String state;
-	private String setlist_fm;
+	private String setlistId;
 	
 	public Integer getId() {
 		return id;
@@ -57,12 +57,12 @@ public class Venue {
 		this.state = state;
 	}
 	
-	public String getSetlist_fm() {
-		return setlist_fm;
+	public String getSetlistId() {
+		return setlistId;
 	}
 
-	public void setSetlist_fm(String setlist_fm) {
-		this.setlist_fm = setlist_fm;
+	public void setSetlistId(String setlistId) {
+		this.setlistId = setlistId;
 	}
 
 }

@@ -59,10 +59,6 @@ System.out.print("---input date: "+date);
 	//added later to query by event name
 	@GetMapping(path="/get") // Map ONLY GET Requests
 	public @ResponseBody Iterable<Event> findByName (@RequestParam String name) {
-		// @ResponseBody means the returned String is the response, not a view name
-		// @RequestParam means it is a parameter from the GET or POST request
-
-		
 		return eventRepository.findByName(name);
 	}
 	

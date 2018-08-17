@@ -23,7 +23,7 @@ public class VenueController {
 			, @RequestParam(required=false) String country
 			, @RequestParam(required=false) String city
 			, @RequestParam(required=false) String state
-			, @RequestParam(required=false) String setlist_fm
+			, @RequestParam(required=false) String setlistId
 			
 			) {
 		// @ResponseBody means the returned String is the response, not a view name
@@ -34,7 +34,7 @@ public class VenueController {
 		n.setCountry(country);
 		n.setCity(city);
 		n.setState(state);
-		n.setSetlist_fm(setlist_fm);
+		n.setSetlistId(setlistId);
 		venueRepository.save(n);
 		return "Venue Saved";
 	}
@@ -43,6 +43,32 @@ public class VenueController {
 	public @ResponseBody Iterable<Venue> getAllVenues() {
 		// This returns a JSON or XML with the users
 		return venueRepository.findAll();
+	}
+	
+	//added later to query by event name
+	@GetMapping(path="/getby_name") // Map ONLY GET Requests
+	public @ResponseBody Venue findByName (@RequestParam String name) {
+		return venueRepository.findByName(name);
+	}
+	
+	//added later to query by event name
+	@GetMapping(path="/getby_id") // Map ONLY GET Requests
+	public @ResponseBody Venue findById (@RequestParam Integer id) {
+		return venueRepository.findById(id);
+	}
+	
+	//not working, might need to implement Entities for the other tables
+	@GetMapping(path="/get") // Map ONLY GET Requests
+	public @ResponseBody Iterable<Venue> search (
+	@RequestParam(required=false) Integer id, 
+	@RequestParam(required=false) String name, 
+	@RequestParam(required=false) String setlistId
+	) {
+		// @ResponseBody means the returned String is the response, not a view name
+		// @RequestParam means it is a parameter from the GET or POST request
+
+		
+		return venueRepository.search(id, name, setlistId);
 	}
 	
 }
