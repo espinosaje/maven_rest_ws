@@ -14,6 +14,17 @@ public class City {
     public City() {
     }
 	
+	public City(
+		String name,
+		String state,
+		String stateCode,
+		String country) {
+			this.name = name;
+			this.state = state;
+			this.stateCode = stateCode;
+			// ToDo: send country code or just remove it from the Contry class
+			this.country = new Country(country, null);
+    }
 	
     public String getState() {
         return state;

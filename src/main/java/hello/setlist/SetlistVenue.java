@@ -14,6 +14,13 @@ public class SetlistVenue {
     public SetlistVenue() {
     }
 	
+	public SetlistVenue(String id,
+						String name,
+						City city) {
+		this.id = id;
+		this.name = name;
+		this.city = city;
+    }	
 	
     public String getId() {
         return id;
