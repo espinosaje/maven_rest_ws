@@ -19,12 +19,17 @@ import java.util.ArrayList;
 import hello.setlist.VenuesJson;
 import hello.setlist.SetlistVenue;
 
+import hello.venue.Venue;
+import hello.venue.VenueRepository;
+
+import hello.setlist.City;
 
 @RestController
 @RequestMapping("/setlist")
 public class SetlistVenueController {
-	//@Autowired
-	//private SetlistVenue venue;
+	@Autowired
+	private VenueRepository venueRepository;
+	
 	HttpEntity<String> entityReq;
 	
 	public SetlistVenueController(){
@@ -36,11 +41,49 @@ public class SetlistVenueController {
 		entityReq = new HttpEntity<String>(headers);		
 	}
 	
+	public SetlistVenue lookForLocalVenue(String name
+			, String stateCode
+			, String cityName){
+		//1. call repositofy findByName
+		Venue venueInDB = venueRepository.findByName(name);
+		
+		//2. if found form a SetlistVenue object
+		if (null != venueInDB){
+			City city = new City(
+				venueInDB.getCity(),
+				null, //state name (not code)
+				venueInDB.getState(),
+				venueInDB.getCountry());
+				
+			SetlistVenue result = new SetlistVenue(
+				venueInDB.getId()+"",
+				venueInDB.getName(),
+				city);	
+				
+			
+			//ArrayList<SetlistVenue> result = null;
+			
+			return result;
+		}
+		
+		//3. Otherwise, return NULL
+		return null;		
+	}
+
 	@GetMapping(path="/venue")
 	public @ResponseBody Iterable<SetlistVenue> getVenue (@RequestParam(required=false) String name
 			, @RequestParam(required=false) String stateCode
-			, @RequestParam(required=false) String cityName			
+			, @RequestParam(required=false) String cityName
+			, @RequestParam(required=false) boolean lookForLocalDatabaseFirst	
 			) {
+				
+		SetlistVenue localVenue = lookForLocalVenue(name,stateCode,cityName);
+		
+		if (null != localVenue){
+			ArrayList<SetlistVenue> result = new ArrayList<SetlistVenue>();
+			result.add(localVenue);
+			return 	result;
+		}
 				
 		String request = "https://api.setlist.fm/rest/1.0/search/venues?";
 
