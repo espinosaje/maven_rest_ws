@@ -76,14 +76,16 @@ public class SetlistVenueController {
 			, @RequestParam(required=false) String cityName
 			, @RequestParam(required=false) boolean lookForLocalDatabaseFirst	
 			) {
-				
-		SetlistVenue localVenue = lookForLocalVenue(name,stateCode,cityName);
 		
-		if (null != localVenue){
-			ArrayList<SetlistVenue> result = new ArrayList<SetlistVenue>();
-			result.add(localVenue);
-			return 	result;
-		}
+		if (lookForLocalDatabaseFirst){
+			SetlistVenue localVenue = lookForLocalVenue(name,stateCode,cityName);
+			
+			if (null != localVenue){
+				ArrayList<SetlistVenue> result = new ArrayList<SetlistVenue>();
+				result.add(localVenue);
+				return 	result;
+			}
+		}	
 				
 		String request = "https://api.setlist.fm/rest/1.0/search/venues?";
 
