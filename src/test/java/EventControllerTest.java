@@ -78,15 +78,20 @@ public class EventControllerTest {
         //this.mockMvc.perform(get("/get")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("Hello Mock")));
     } 
 	
-	// In Process
-	  @Test
-		String expected = "[{\"id\":4,\"name\":\"Ozzfest\",\"tour\":\"Ozzfest\",\"year\":2002,\"venue\":8,\"fest\":true,\"date\":null}]";
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-				"/event/get?name=ozzfest").accept(MediaType.APPLICATION_JSON);
-		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-		System.out.println("=== findByNameSvcTest_Result: "+result.getResponse().getContentAsString());
-	
-		//JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false); 
-
-	}  
+	/*
+	 * // In Process
+	 * 
+	 * @Test String expected =
+	 * "[{\"id\":4,\"name\":\"Ozzfest\",\"tour\":\"Ozzfest\",\"year\":2002,\"venue\":8,\"fest\":true,\"date\":null}]";
+	 * RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+	 * "/event/get?name=ozzfest").accept(MediaType.APPLICATION_JSON); MvcResult
+	 * result = mockMvc.perform(requestBuilder).andReturn();
+	 * System.out.println("=== findByNameSvcTest_Result: "+result.getResponse().
+	 * getContentAsString());
+	 * 
+	 * //JSONAssert.assertEquals(expected,
+	 * result.getResponse().getContentAsString(), false);
+	 * 
+	 * }
+	 */
 }
